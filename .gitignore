@@ -1,0 +1,18 @@
+# Build (CRA)
+build/
+
+# Env files
+.env
+.env.* 
+
+# Large media (avoid huge pushes)
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.webm
+
+# CV files (اختياري إذا بدك CV يكون رابط خارجي بدل رفعه)
+*.pdf
+*.doc
+*.docx
