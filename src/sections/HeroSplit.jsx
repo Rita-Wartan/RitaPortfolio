@@ -142,7 +142,7 @@ export default function HeroSplit({ mode, setMode, cfg, onPrimary }) {
                     initial={{ opacity: 0, scale: 0.96 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.6, ease }}
-                    className="hero-portrait-wrap order-1 flex justify-center lg:order-2"
+                    className="hero-portrait-wrap order-1 flex flex-col items-center justify-center gap-4 lg:order-2"
                 >
                     <div className="hero-portrait hero-portrait-full" aria-hidden>
                         <div
@@ -162,6 +162,21 @@ export default function HeroSplit({ mode, setMode, cfg, onPrimary }) {
                             </div>
                         </div>
                     </div>
+                    <motion.div
+                        className="hero-switch-hint"
+                        animate={prefersReducedMotion ? undefined : { y: [0, -3, 0], opacity: [0.7, 1, 0.7] }}
+                        transition={prefersReducedMotion ? undefined : { duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                        <span className="hero-switch-hint__arrow hero-switch-hint__arrow--left" aria-hidden>
+                            ←
+                        </span>
+                        <span className="hero-switch-hint__label">
+                            Tap a side to switch
+                        </span>
+                        <span className="hero-switch-hint__arrow hero-switch-hint__arrow--right" aria-hidden>
+                            →
+                        </span>
+                    </motion.div>
                 </motion.div>
 
                 <motion.button
