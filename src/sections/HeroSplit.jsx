@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { cn } from "../utils/cn";
@@ -10,22 +10,13 @@ import designerCreate from "../assets/create.png";
 import designerLight from "../assets/light.png";
 import designerPen from "../assets/pen.png";
 import designerDesign from "../assets/design.png";
+import designPortrait from "../assets/123.png";
+import coderPortrait from "../assets/ritacoder.png";
 
 export default function HeroSplit({ mode, setMode, cfg, onPrimary }) {
     const isUiux = mode === "uiux";
     const cvHref = `${import.meta.env.BASE_URL}Rita_Wartan_CV_editable1.pdf`;
     const prefersReducedMotion = useReducedMotion();
-    const previousMode = useRef(mode);
-    const [isFlipping, setIsFlipping] = useState(false);
-
-    useEffect(() => {
-        if (previousMode.current === mode) return;
-        previousMode.current = mode;
-        if (prefersReducedMotion) return;
-        setIsFlipping(true);
-        const timeoutId = window.setTimeout(() => setIsFlipping(false), 720);
-        return () => window.clearTimeout(timeoutId);
-    }, [mode, prefersReducedMotion]);
 
     return (
         <section className="relative mx-auto max-w-6xl overflow-hidden px-4 pt-2 sm:px-6 lg:px-4">
@@ -153,10 +144,24 @@ export default function HeroSplit({ mode, setMode, cfg, onPrimary }) {
                     transition={{ duration: 0.6, ease }}
                     className="hero-portrait-wrap order-1 flex justify-center lg:order-2"
                 >
-                    <div
-                        className={cn("hero-portrait hero-portrait-full", isFlipping && "hero-portrait--flip")}
-                        aria-hidden
-                    />
+                    <div className="hero-portrait hero-portrait-full" aria-hidden>
+                        <div
+                            className={cn(
+                                "hero-flip-card",
+                                mode === "mern" && "hero-flip-card--code",
+                                prefersReducedMotion && "hero-flip-card--reduced"
+                            )}
+                        >
+                            <div className="hero-flip-card__inner">
+                                <div className="hero-flip-face hero-flip-face--front">
+                                    <img src={designPortrait} alt="" className="hero-flip-image" />
+                                </div>
+                                <div className="hero-flip-face hero-flip-face--back">
+                                    <img src={coderPortrait} alt="" className="hero-flip-image" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </motion.div>
 
                 <motion.button

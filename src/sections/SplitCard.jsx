@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "../utils/cn";
 import { ease } from "../data/content";
@@ -10,17 +10,6 @@ import ritaCoder from "../assets/code.png";
 
 export default function SplitCard({ mode, setMode, cfg }) {
     const prefersReducedMotion = useReducedMotion();
-    const previousMode = useRef(mode);
-    const [isFlipping, setIsFlipping] = useState(false);
-
-    useEffect(() => {
-        if (previousMode.current === mode) return;
-        previousMode.current = mode;
-        if (prefersReducedMotion) return;
-        setIsFlipping(true);
-        const timeoutId = window.setTimeout(() => setIsFlipping(false), 720);
-        return () => window.clearTimeout(timeoutId);
-    }, [mode, prefersReducedMotion]);
 
     return (
         <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5">
@@ -63,14 +52,22 @@ export default function SplitCard({ mode, setMode, cfg }) {
                     />
 
                     {/*  Your Image */}
-                    <img
-                        src={mode === "mern" ? ritaCoder : ritaDesigner}
-                        alt={mode === "mern" ? "Code preview" : "Rita portrait"}
+                    <div
                         className={cn(
-                            "absolute inset-0 h-full w-full object-cover object-center",
-                            isFlipping && "hero-portrait--flip"
+                            "hero-flip-card",
+                            mode === "mern" && "hero-flip-card--code",
+                            prefersReducedMotion && "hero-flip-card--reduced"
                         )}
-                    />
+                    >
+                        <div className="hero-flip-card__inner">
+                            <div className="hero-flip-face hero-flip-face--front">
+                                <img src={ritaDesigner} alt="Rita portrait" className="hero-flip-image" />
+                            </div>
+                            <div className="hero-flip-face hero-flip-face--back">
+                                <img src={ritaCoder} alt="Code preview" className="hero-flip-image" />
+                            </div>
+                        </div>
+                    </div>
 
                     <div className="absolute bottom-3 left-3 right-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                         <span className={cn("rounded-full px-3 py-1 text-xs ring-1", cfg.chip)}>

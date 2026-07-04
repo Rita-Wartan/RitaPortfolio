@@ -12,6 +12,7 @@ export default function Header({
     setMobileNavOpen,
     onNav,
 }) {
+    const mobileMenuIsDesign = mode === "uiux";
     return (
         <header className="site-header sticky top-0 z-30 border-b border-white/10 bg-[#e8ddc7]/70 backdrop-blur-md">
             <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-4">
@@ -62,13 +63,17 @@ export default function Header({
                             animate={{ y: 0, opacity: 1, scale: 1 }}
                             exit={{ y: -10, opacity: 0, scale: 0.98 }}
                             transition={{ duration: 0.25, ease }}
-                            className="mx-auto mt-4 w-[92%] max-w-md rounded-2xl border border-white/10 bg-slate-950 p-4"
+                            className={mobileMenuIsDesign
+                                ? "mx-auto mt-4 w-[92%] max-w-md rounded-2xl border border-[#5a514338] bg-[rgba(255,250,242,0.96)] p-4 text-[#1b1b1b]"
+                                : "mx-auto mt-4 w-[92%] max-w-md rounded-2xl border border-white/10 bg-slate-950 p-4 text-white"}
                         >
                             <div className="flex items-center justify-between">
                                 <div className="text-sm font-semibold">Menu</div>
                                 <button
                                     onClick={() => setMobileNavOpen(false)}
-                                    className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5"
+                                    className={mobileMenuIsDesign
+                                        ? "inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[#5a514338] bg-[#ffffffb8] text-[#1b1b1b]"
+                                        : "inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white"}
                                     aria-label="Close menu"
                                 >
                                     <X className="h-5 w-5" />
@@ -83,7 +88,9 @@ export default function Header({
                                             setMobileNavOpen(false);
                                             onNav(it.id);
                                         }}
-                                        className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-left text-white/85"
+                                        className={mobileMenuIsDesign
+                                            ? "w-full rounded-xl border border-[#5a514338] bg-[#ffffffc9] px-4 py-3 text-left text-[#1b1b1b]"
+                                            : "w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-left text-white/85"}
                                     >
                                         {it.label}
                                     </button>
