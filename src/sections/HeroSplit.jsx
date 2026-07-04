@@ -125,7 +125,7 @@ export default function HeroSplit({ mode, setMode, cfg, onPrimary }) {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6, ease }}
                     className={cn(
-                        "group order-2 mx-auto max-w-sm text-center transition focus:outline-none lg:order-1 lg:mx-0 lg:max-w-none lg:text-left",
+                        "group hero-mode-trigger order-2 mx-auto max-w-sm cursor-pointer text-center transition focus:outline-none lg:order-1 lg:mx-0 lg:max-w-none lg:text-left",
                         isUiux ? "text-white" : "text-white/70"
                     )}
                 >
@@ -184,7 +184,7 @@ export default function HeroSplit({ mode, setMode, cfg, onPrimary }) {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6, ease }}
                     className={cn(
-                        "group order-3 mx-auto max-w-sm text-center transition focus:outline-none lg:mx-0 lg:max-w-none lg:text-right",
+                        "group hero-mode-trigger order-3 mx-auto max-w-sm cursor-pointer text-center transition focus:outline-none lg:mx-0 lg:max-w-none lg:text-right",
                         !isUiux ? "text-white" : "text-white/70"
                     )}
                 >
