@@ -129,13 +129,26 @@ export default function HeroSplit({ mode, setMode, cfg, onPrimary }) {
                         isUiux ? "text-white" : "text-white/70"
                     )}
                 >
-                    <div className="text-2xl font-black tracking-tight sm:text-3xl lg:text-4xl">designer</div>
-                    <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/70 sm:max-w-sm lg:max-w-xs">
-                        UI/UX Designer with a passion for building elegant, useful experiences that scale.
-                    </p>
-                    <span className="mt-4 inline-flex items-center justify-center gap-2 text-[11px] uppercase tracking-[0.2em] text-white/50 lg:justify-start">
-                        {isUiux ? "Active mode" : "Switch to design"}
-                    </span>
+                    <motion.div
+                        animate={
+                            !isUiux && !prefersReducedMotion
+                                ? { y: [0, -8, 0], scale: [1, 1.02, 1] }
+                                : { y: 0, scale: 1 }
+                        }
+                        transition={
+                            !isUiux && !prefersReducedMotion
+                                ? { duration: 2.8, repeat: Infinity, ease: "easeInOut" }
+                                : { duration: 0.25 }
+                        }
+                    >
+                        <div className="text-2xl font-black tracking-tight sm:text-3xl lg:text-4xl">designer</div>
+                        <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/70 sm:max-w-sm lg:max-w-xs">
+                            UI/UX Designer with a passion for building elegant, useful experiences that scale.
+                        </p>
+                        <span className="mt-4 inline-flex items-center justify-center gap-2 text-[11px] uppercase tracking-[0.2em] text-white/50 lg:justify-start">
+                            {isUiux ? "Active mode" : "Switch to design"}
+                        </span>
+                    </motion.div>
                 </motion.button>
 
                 <motion.div
@@ -162,21 +175,6 @@ export default function HeroSplit({ mode, setMode, cfg, onPrimary }) {
                             </div>
                         </div>
                     </div>
-                    <motion.div
-                        className="hero-switch-hint"
-                        animate={prefersReducedMotion ? undefined : { y: [0, -3, 0], opacity: [0.7, 1, 0.7] }}
-                        transition={prefersReducedMotion ? undefined : { duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-                    >
-                        <span className="hero-switch-hint__arrow hero-switch-hint__arrow--left" aria-hidden>
-                            ←
-                        </span>
-                        <span className="hero-switch-hint__label">
-                            Tap a side to switch
-                        </span>
-                        <span className="hero-switch-hint__arrow hero-switch-hint__arrow--right" aria-hidden>
-                            →
-                        </span>
-                    </motion.div>
                 </motion.div>
 
                 <motion.button
@@ -190,13 +188,26 @@ export default function HeroSplit({ mode, setMode, cfg, onPrimary }) {
                         !isUiux ? "text-white" : "text-white/70"
                     )}
                 >
-                    <div className="text-2xl font-black tracking-tight sm:text-3xl lg:text-4xl">&lt;coder&gt;</div>
-                    <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/70 sm:max-w-sm lg:ml-auto lg:max-w-xs">
-                        MERN stack developer focused on clean architecture, performance, and precise UI polish.
-                    </p>
-                    <span className="mt-4 inline-flex items-center justify-center gap-2 text-[11px] uppercase tracking-[0.2em] text-white/50 lg:justify-end">
-                        {!isUiux ? "Active mode" : "Switch to code"}
-                    </span>
+                    <motion.div
+                        animate={
+                            isUiux && !prefersReducedMotion
+                                ? { y: [0, -8, 0], scale: [1, 1.02, 1] }
+                                : { y: 0, scale: 1 }
+                        }
+                        transition={
+                            isUiux && !prefersReducedMotion
+                                ? { duration: 2.8, repeat: Infinity, ease: "easeInOut" }
+                                : { duration: 0.25 }
+                        }
+                    >
+                        <div className="text-2xl font-black tracking-tight sm:text-3xl lg:text-4xl">&lt;coder&gt;</div>
+                        <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/70 sm:max-w-sm lg:ml-auto lg:max-w-xs">
+                            MERN stack developer focused on clean architecture, performance, and precise UI polish.
+                        </p>
+                        <span className="mt-4 inline-flex items-center justify-center gap-2 text-[11px] uppercase tracking-[0.2em] text-white/50 lg:justify-end">
+                            {!isUiux ? "Active mode" : "Switch to code"}
+                        </span>
+                    </motion.div>
                 </motion.button>
             </div>
 
