@@ -13,7 +13,7 @@ export default function ProjectCard({ p, cfg, mode }) {
             whileHover={{ y: -6, scale: 1.02, rotate: -0.3 }}
             transition={{ type: "spring", stiffness: 260, damping: 18 }}
             className={cn(
-                "project-card group relative overflow-hidden rounded-3xl border border-white/10 p-6",
+                "project-card group relative overflow-hidden rounded-3xl border border-white/10 p-5 sm:p-6",
                 cardLink && "cursor-pointer",
                 mode === "mern" && "project-card--mern text-white",
                 mode === "uiux" && "project-card--uiux"
@@ -37,8 +37,8 @@ export default function ProjectCard({ p, cfg, mode }) {
             <div className="project-card__noise" aria-hidden />
 
             <div className="relative">
-                <div className="flex items-center justify-between gap-3">
-                    <h3 className={cn("project-card__title text-xl font-semibold", mode === "mern" && "text-white")}>
+                <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
+                    <h3 className={cn("project-card__title text-lg font-semibold sm:text-xl", mode === "mern" && "text-white")}>
                         {p.title}
                     </h3>
                     <span className={cn("project-card__badge", mode === "mern" && "text-white")}>
@@ -46,7 +46,7 @@ export default function ProjectCard({ p, cfg, mode }) {
                     </span>
                 </div>
 
-                <p className={cn("project-card__blurb mt-3 text-sm text-white/70", mode === "mern" && "text-white")}>
+                <p className={cn("project-card__blurb mt-3 text-sm leading-relaxed text-white/70", mode === "mern" && "text-white")}>
                     {p.blurb}
                 </p>
 

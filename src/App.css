@@ -19,16 +19,26 @@ body {
   min-height: 100vh;
   background-color: #efe1cc;
   color: #1b1b1b;
+  overflow-x: clip;
 }
 
 #root {
   min-height: 100vh;
+  overflow-x: clip;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
 }
 
 .app-shell {
   position: relative;
   min-height: 100vh;
   background: #efe1cc;
+  overflow-x: clip;
 }
 
 .app-shell--designer {
@@ -333,6 +343,10 @@ body {
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
 }
 
+.hero-portrait-wrap {
+  perspective: 1400px;
+}
+
 .books-panel {
   position: relative;
   padding: 20px;
@@ -488,13 +502,38 @@ body {
 .hero-portrait {
   --hero-image: url("./assets/123.png");
   position: relative;
-  width: 520px;
-  height: 520px;
+  width: min(82vw, 520px);
+  aspect-ratio: 1;
   border-radius: 9999px;
   overflow: hidden;
   background-image: var(--hero-image, linear-gradient(135deg, #ff8a65, #ffd54f));
   background-size: cover;
   background-position: center;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.hero-portrait--flip {
+  animation: hero-flip 720ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes hero-flip {
+  0% {
+    transform: rotateY(0deg) scale(1);
+    filter: saturate(1);
+  }
+  48% {
+    transform: rotateY(88deg) scale(0.98);
+    filter: saturate(0.9);
+  }
+  52% {
+    transform: rotateY(-88deg) scale(0.98);
+    filter: saturate(0.9);
+  }
+  100% {
+    transform: rotateY(0deg) scale(1);
+    filter: saturate(1);
+  }
 }
 
 
@@ -539,11 +578,100 @@ body {
 
 @media (min-width: 768px) {
   .hero-portrait {
-    width: 680px;
-    height: 680px;
+    width: min(60vw, 680px);
   }
 }
 
 .app-shell--coder .hero-portrait {
   --hero-image: url("./assets/ritacoder.png");
+}
+
+@media (max-width: 1023px) {
+  .app-shell::before,
+  .app-shell::after {
+    opacity: 0.72;
+  }
+
+  .code-column {
+    gap: 8px;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 767px) {
+  .site-header {
+    padding-inline: 0;
+  }
+
+  .project-card {
+    border-radius: 1.5rem;
+  }
+
+  .project-card__badge {
+    font-size: 0.58rem;
+    letter-spacing: 0.16em;
+  }
+
+  .project-card__btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .books-panel {
+    padding: 18px;
+    border-radius: 22px;
+  }
+
+  .books-panel__header {
+    flex-direction: column;
+  }
+
+  .books-panel__subtitle {
+    max-width: none;
+  }
+
+  .books-panel__chips {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .books-panel__card {
+    grid-template-columns: 72px 1fr;
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .books-panel__cover {
+    width: 72px;
+    height: 96px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-portrait {
+    width: min(88vw, 320px);
+  }
+
+  .code-column {
+    gap: 6px;
+    font-size: 9px;
+  }
+
+  .sparkle {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-portrait--flip,
+  .sparkle {
+    animation: none !important;
+  }
+
+  .project-card,
+  .project-card__btn,
+  .project-card__glow {
+    transition: none;
+  }
 }

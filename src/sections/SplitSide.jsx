@@ -7,13 +7,13 @@ export default function SplitSide({ active, label, desc, onClick, align, cfg }) 
     return (
         <button
             onClick={onClick}
-            className={cn("group relative p-5 text-left transition", align === "right" ? "text-right" : "")}
+            className={cn("group relative p-4 text-left transition sm:p-5", align === "right" ? "text-right" : "")}
             aria-pressed={active}
         >
-            <div className={cn("text-2xl font-extrabold", active ? "text-white" : "text-white/70")}>
+            <div className={cn("text-xl font-extrabold sm:text-2xl", active ? "text-white" : "text-white/70")}>
                 {label}
             </div>
-            <div className={cn("mt-1 text-sm", active ? "text-white/70" : "text-white/50")}>
+            <div className={cn("mt-1 text-xs sm:text-sm", active ? "text-white/70" : "text-white/50")}>
                 {desc}
             </div>
 

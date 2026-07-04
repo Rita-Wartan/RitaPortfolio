@@ -14,14 +14,14 @@ export default function Header({
 }) {
     return (
         <header className="site-header sticky top-0 z-30 border-b border-white/10 bg-[#e8ddc7]/70 backdrop-blur-md">
-            <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-                <div className="flex items-center gap-3">
-                    <div className="grid h-10 w-10 place-items-center rounded-2xl border border-white/10 bg-white/5">
+            <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-4">
+                <div className="flex min-w-0 items-center gap-3">
+                    <div className="grid h-9 w-9 shrink-0 place-items-center rounded-2xl border border-white/10 bg-white/5 sm:h-10 sm:w-10">
                         <span className="font-black">R</span>
                     </div>
-                    <div className="leading-tight">
-                        <div className="text-sm font-semibold">Rita Wartan</div>
-                        <div className="text-xs text-white/60">
+                    <div className="min-w-0 leading-tight">
+                        <div className="truncate text-sm font-semibold sm:text-base">Rita Wartan</div>
+                        <div className="truncate text-[11px] text-white/60 sm:text-xs">
                             {mode === "uiux" ? "UI/UX + MERN " : "MERN + Full-stack"}
                         </div>
                     </div>
@@ -42,7 +42,7 @@ export default function Header({
 
                 <button
                     onClick={() => setMobileNavOpen(true)}
-                    className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5"
+                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 md:hidden"
                     aria-label="Open menu"
                 >
                     <Menu className="h-5 w-5" />

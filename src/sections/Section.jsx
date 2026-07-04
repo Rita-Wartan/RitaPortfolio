@@ -7,7 +7,7 @@ export default function Section({ id, eyebrow, title, subtitle, children }) {
     return (
         <motion.section
             id={id}
-            className="mx-auto max-w-6xl px-4 py-14 md:py-16"
+            className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-12 md:py-16 lg:px-4"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={transition}
@@ -23,9 +23,9 @@ export default function Section({ id, eyebrow, title, subtitle, children }) {
                 <div className="text-xs font-semibold tracking-widest text-white/50">
                     {eyebrow.toUpperCase()}
                 </div>
-                <h2 className="mt-2 text-2xl font-bold md:text-3xl">{title}</h2>
+                <h2 className="mt-2 text-xl font-bold sm:text-2xl md:text-3xl">{title}</h2>
                 {subtitle ? (
-                    <p className="mt-2 max-w-2xl text-white/70">{subtitle}</p>
+                    <p className="mt-2 max-w-2xl text-sm text-white/70 sm:text-base">{subtitle}</p>
                 ) : null}
             </motion.div>
             <motion.div

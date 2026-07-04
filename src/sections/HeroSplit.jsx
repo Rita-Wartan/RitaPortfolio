@@ -1,5 +1,5 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { cn } from "../utils/cn";
 import { ease } from "../data/content";
@@ -14,14 +14,27 @@ import designerDesign from "../assets/design.png";
 export default function HeroSplit({ mode, setMode, cfg, onPrimary }) {
     const isUiux = mode === "uiux";
     const cvHref = `${import.meta.env.BASE_URL}Rita_Wartan_CV_editable1.pdf`;
+    const prefersReducedMotion = useReducedMotion();
+    const previousMode = useRef(mode);
+    const [isFlipping, setIsFlipping] = useState(false);
+
+    useEffect(() => {
+        if (previousMode.current === mode) return;
+        previousMode.current = mode;
+        if (prefersReducedMotion) return;
+        setIsFlipping(true);
+        const timeoutId = window.setTimeout(() => setIsFlipping(false), 720);
+        return () => window.clearTimeout(timeoutId);
+    }, [mode, prefersReducedMotion]);
+
     return (
-        <section className="relative mx-auto max-w-6xl px-4 pt-0">
+        <section className="relative mx-auto max-w-6xl overflow-hidden px-4 pt-2 sm:px-6 lg:px-4">
             {mode === "mern" && (
                 <>
                     <motion.img
                         src={pcBackground}
                         alt=""
-                        className="pointer-events-none absolute right-[-16px] top-6 z-0 w-60"
+                        className="pointer-events-none absolute right-[-10px] top-8 z-0 w-32 sm:w-44 lg:right-[-16px] lg:top-6 lg:w-60"
                         animate={{
                             opacity: [0.06, 0.14, 0.06],
                             scale: [0.96, 1.04, 0.98],
@@ -34,7 +47,7 @@ export default function HeroSplit({ mode, setMode, cfg, onPrimary }) {
                     <motion.img
                         src={pcBackgroundAlt}
                         alt=""
-                        className="pointer-events-none absolute left-[-6px] bottom-[-10px] z-0 w-40"
+                        className="pointer-events-none absolute left-[-8px] bottom-6 z-0 w-24 sm:w-32 lg:left-[-6px] lg:bottom-[-10px] lg:w-40"
                         animate={{
                             opacity: [0.04, 0.1, 0.04],
                             scale: [0.98, 1.03, 0.97],
@@ -47,7 +60,7 @@ export default function HeroSplit({ mode, setMode, cfg, onPrimary }) {
                     <motion.img
                         src={paperBackground}
                         alt=""
-                        className="pointer-events-none absolute left-10 top-24 z-0 w-44"
+                        className="pointer-events-none absolute left-2 top-24 z-0 w-24 sm:left-6 sm:w-32 lg:left-10 lg:w-44"
                         animate={{
                             opacity: [0.05, 0.12, 0.05],
                             rotate: [0, 8, -6, 0],
@@ -63,7 +76,7 @@ export default function HeroSplit({ mode, setMode, cfg, onPrimary }) {
                     <motion.img
                         src={designerCreate}
                         alt=""
-                        className="pointer-events-none absolute right-[-16px] top-6 z-0 w-60"
+                        className="pointer-events-none absolute right-[-10px] top-8 z-0 w-32 sm:w-44 lg:right-[-16px] lg:top-6 lg:w-60"
                         animate={{
                             opacity: [0.06, 0.14, 0.06],
                             scale: [0.96, 1.04, 0.98],
@@ -76,7 +89,7 @@ export default function HeroSplit({ mode, setMode, cfg, onPrimary }) {
                     <motion.img
                         src={designerLight}
                         alt=""
-                        className="pointer-events-none absolute left-[-6px] bottom-[-10px] z-0 w-40"
+                        className="pointer-events-none absolute left-[-8px] bottom-6 z-0 w-24 sm:w-32 lg:left-[-6px] lg:bottom-[-10px] lg:w-40"
                         animate={{
                             opacity: [0.04, 0.1, 0.04],
                             scale: [0.98, 1.03, 0.97],
@@ -89,7 +102,7 @@ export default function HeroSplit({ mode, setMode, cfg, onPrimary }) {
                     <motion.img
                         src={designerPen}
                         alt=""
-                        className="pointer-events-none absolute left-10 top-24 z-0 w-44"
+                        className="pointer-events-none absolute left-2 top-24 z-0 w-24 sm:left-6 sm:w-32 lg:left-10 lg:w-44"
                         animate={{
                             opacity: [0.05, 0.12, 0.05],
                             rotate: [0, 8, -6, 0],
@@ -101,7 +114,7 @@ export default function HeroSplit({ mode, setMode, cfg, onPrimary }) {
                     <motion.img
                         src={designerDesign}
                         alt=""
-                        className="pointer-events-none absolute right-10 bottom-6 z-0 w-36"
+                        className="pointer-events-none absolute right-3 bottom-8 z-0 w-20 sm:right-8 sm:w-28 lg:right-10 lg:bottom-6 lg:w-36"
                         animate={{
                             opacity: [0.05, 0.12, 0.05],
                             scale: [0.98, 1.03, 0.97],
@@ -113,7 +126,7 @@ export default function HeroSplit({ mode, setMode, cfg, onPrimary }) {
                     />
                 </>
             )}
-            <div className="grid items-center gap-10 lg:grid-cols-[1fr_auto_1fr]">
+            <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:gap-10">
                 <motion.button
                     type="button"
                     onClick={() => setMode("uiux")}
@@ -121,15 +134,15 @@ export default function HeroSplit({ mode, setMode, cfg, onPrimary }) {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6, ease }}
                     className={cn(
-                        "group text-left transition focus:outline-none",
+                        "group order-2 mx-auto max-w-sm text-center transition focus:outline-none lg:order-1 lg:mx-0 lg:max-w-none lg:text-left",
                         isUiux ? "text-white" : "text-white/70"
                     )}
                 >
-                    <div className="text-3xl font-black tracking-tight sm:text-4xl">designer</div>
-                    <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/70">
+                    <div className="text-2xl font-black tracking-tight sm:text-3xl lg:text-4xl">designer</div>
+                    <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/70 sm:max-w-sm lg:max-w-xs">
                         UI/UX Designer with a passion for building elegant, useful experiences that scale.
                     </p>
-                    <span className="mt-4 inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-white/50">
+                    <span className="mt-4 inline-flex items-center justify-center gap-2 text-[11px] uppercase tracking-[0.2em] text-white/50 lg:justify-start">
                         {isUiux ? "Active mode" : "Switch to design"}
                     </span>
                 </motion.button>
@@ -138,9 +151,12 @@ export default function HeroSplit({ mode, setMode, cfg, onPrimary }) {
                     initial={{ opacity: 0, scale: 0.96 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.6, ease }}
-                    className="flex justify-center"
+                    className="hero-portrait-wrap order-1 flex justify-center lg:order-2"
                 >
-                    <div className="hero-portrait hero-portrait-full" aria-hidden />
+                    <div
+                        className={cn("hero-portrait hero-portrait-full", isFlipping && "hero-portrait--flip")}
+                        aria-hidden
+                    />
                 </motion.div>
 
                 <motion.button
@@ -150,15 +166,15 @@ export default function HeroSplit({ mode, setMode, cfg, onPrimary }) {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6, ease }}
                     className={cn(
-                        "group text-right transition focus:outline-none",
+                        "group order-3 mx-auto max-w-sm text-center transition focus:outline-none lg:mx-0 lg:max-w-none lg:text-right",
                         !isUiux ? "text-white" : "text-white/70"
                     )}
                 >
-                    <div className="text-3xl font-black tracking-tight sm:text-4xl">&lt;coder&gt;</div>
-                    <p className="mt-3 ml-auto max-w-xs text-sm leading-relaxed text-white/70">
+                    <div className="text-2xl font-black tracking-tight sm:text-3xl lg:text-4xl">&lt;coder&gt;</div>
+                    <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/70 sm:max-w-sm lg:ml-auto lg:max-w-xs">
                         MERN stack developer focused on clean architecture, performance, and precise UI polish.
                     </p>
-                    <span className="mt-4 inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-white/50">
+                    <span className="mt-4 inline-flex items-center justify-center gap-2 text-[11px] uppercase tracking-[0.2em] text-white/50 lg:justify-end">
                         {!isUiux ? "Active mode" : "Switch to code"}
                     </span>
                 </motion.button>
@@ -168,12 +184,12 @@ export default function HeroSplit({ mode, setMode, cfg, onPrimary }) {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, ease, delay: 0.1 }}
-                className="mt-10 flex flex-wrap items-center justify-center gap-3"
+                className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center"
             >
                 <button
                     onClick={onPrimary}
                     className={cn(
-                        "inline-flex items-center gap-2 rounded-xl px-5 py-3 font-semibold transition ring-1 ring-white/10",
+                        "inline-flex w-full items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition ring-1 ring-white/10 sm:w-auto sm:text-base",
                         cfg.primaryBtn
                     )}
                 >
@@ -186,7 +202,7 @@ export default function HeroSplit({ mode, setMode, cfg, onPrimary }) {
                     href={cvHref}
                     download="Rita_Wartan_CV_editable1.pdf"
                     className={cn(
-                        "inline-flex items-center gap-2 rounded-xl px-5 py-3 font-semibold transition ring-1",
+                        "inline-flex w-full items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition ring-1 sm:w-auto sm:text-base",
                         cfg.secondaryBtn
                     )}
                 >

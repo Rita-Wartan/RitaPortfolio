@@ -171,13 +171,13 @@ export default function App() {
           onNav={scrollTo}
         />
 
-        <main className="relative z-10">
+        <main className="relative z-10 overflow-x-clip">
           <HeroSplit mode={mode} setMode={setMode} cfg={cfg} onPrimary={() => scrollTo("projects")} />
 
           <Section id="about" eyebrow="About" title={cfg.title} subtitle={cfg.subtitle}>
             <div className={cn("grid gap-8 md:grid-cols-12", mode === "mern" && "text-white")}>
               <div className="md:col-span-7">
-                <p className={cn("text-white/80 leading-relaxed", mode === "mern" && "text-white")}>
+                <p className={cn("text-sm leading-relaxed text-white/80 sm:text-base", mode === "mern" && "text-white")}>
                   I'm a UI/UX designer and MERN developer who bridges design and engineering.
                   I care about clarity, consistency, and speed - whether I'm mapping user flows,
                   crafting a design system, or shipping a performant React and React Native app.
@@ -191,7 +191,7 @@ export default function App() {
                     <span
                       key={t}
                       className={cn(
-                        "inline-flex items-center rounded-full px-3 py-1 text-sm ring-1",
+                        "inline-flex items-center rounded-full px-3 py-1 text-xs ring-1 sm:text-sm",
                         cfg.chip,
                         mode === "mern" && "text-white"
                       )}
@@ -203,17 +203,17 @@ export default function App() {
               </div>
 
               <div className="md:col-span-5">
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
-                  <div className="flex items-center justify-between">
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-5">
+                  <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <div className={cn("text-sm text-white/70", mode === "mern" && "text-white")}>
                       Currently focusing
                     </div>
-                    <span className={cn("rounded-full px-2 py-1 text-xs ring-1", cfg.chip)}>
+                    <span className={cn("inline-flex w-fit rounded-full px-2 py-1 text-xs ring-1", cfg.chip)}>
                       {mode === "uiux" ? "Case studies" : "Full-stack builds"}
                     </span>
                   </div>
 
-                  <ul className={cn("mt-4 space-y-3 text-white/80", mode === "mern" && "text-white")}>
+                  <ul className={cn("mt-4 space-y-3 text-sm text-white/80 sm:text-base", mode === "mern" && "text-white")}>
                     {(mode === "uiux"
                       ? ["Problem framing and user journeys", "Design system components", "Interactive prototypes", "Handoff with specs"]
                       : ["API design and validation", "Auth & permissions", "Performance and caching", "Deployments (CI/CD)"]
@@ -245,19 +245,19 @@ export default function App() {
                 <motion.img
                   src={mernFloat}
                   alt=""
-                  className="pointer-events-none absolute right-[-12px] top-[-18px] w-24"
+                  className="pointer-events-none absolute right-0 top-[-10px] w-16 sm:right-[-12px] sm:top-[-18px] sm:w-24"
                   animate={{ y: [0, -10, 0], rotate: [0, 2, 0] }}
                   transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                   style={{ opacity: 0.22 }}
                 />
               )}
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-5 sm:p-6">
                 <h3 className="text-lg font-semibold">Core skills</h3>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {SKILLS[mode].map((s) => (
                     <span
                       key={s}
-                      className={cn("rounded-full px-3 py-1 text-sm ring-1", cfg.chip, mode === "mern" && "text-white")}
+                      className={cn("rounded-full px-3 py-1 text-xs ring-1 sm:text-sm", cfg.chip, mode === "mern" && "text-white")}
                     >
                       {s}
                     </span>
@@ -265,11 +265,11 @@ export default function App() {
                 </div>
               </div>
 
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-5 sm:p-6">
                 <h3 className="text-lg font-semibold">Toolbox</h3>
                 <div
                   className={cn(
-                    "mt-4 grid grid-cols-2 gap-2",
+                    "mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2",
                     mode === "mern" ? "text-white" : "text-white/80"
                   )}
                 >
@@ -277,7 +277,7 @@ export default function App() {
                     ? ["Figma", "FigJam", "Adobe CC", "Notion", "Miro", "Hotjar", "Maze", "Zeplin"]
                     : ["TypeScript", "React Query", "Redux", "Docker", "Vite", "GitHub Actions"]
                   ).map((t) => (
-                    <div key={t} className="rounded-xl border border-white/10 bg-white/5 px-3 py-2">
+                    <div key={t} className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm sm:text-base">
                       {t}
                     </div>
                   ))}
@@ -292,30 +292,35 @@ export default function App() {
             title="Let's build something clean"
             subtitle="Available for freelance, contract, or full-time roles"
           >
-            <div className="flex flex-col gap-4 rounded-2xl border border-white/10 bg-white/5 p-6 md:flex-row md:items-center md:justify-between">
-              <div>
-                <div className="text-white/80">
+            <div className="flex flex-col gap-4 rounded-2xl border border-white/10 bg-white/5 p-5 sm:p-6 md:flex-row md:items-center md:justify-between">
+              <div className="min-w-0">
+                <div className="text-sm text-white/80 sm:text-base">
                   Email me or connect - happy to share case studies, code samples, and process.
                 </div>
-                <div className="mt-2 text-sm text-white/60">
+                <div className="mt-2 break-all text-sm text-white/60 sm:break-normal">
                   ritaa.wartann@gmail.com
                 </div>
               </div>
 
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
                 <a
                   href="#"
                   className={cn(
-                    "inline-flex items-center gap-2 rounded-xl px-4 py-2 font-medium transition ring-1 ring-white/10",
+                    "inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition ring-1 ring-white/10 sm:w-auto",
                     cfg.primaryBtn
                   )}
                 >
                   <Mail className="h-4 w-4" /> Email
                 </a>
-                <a href="https://github.com/Rita-Wartan" className={cn("inline-flex items-center gap-2 rounded-xl px-4 py-2 font-medium transition ring-1", cfg.secondaryBtn)}>
+                <a href="https://github.com/Rita-Wartan" className={cn("inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition ring-1 sm:w-auto", cfg.secondaryBtn)}>
                   <Github className="h-4 w-4" /> GitHub
                 </a>
-                <a href="#" className={cn("inline-flex items-center gap-2 rounded-xl px-4 py-2 font-medium transition ring-1", cfg.secondaryBtn)}>
+                <a
+                  href="https://www.linkedin.com/in/rita-wartan-b70a1b319"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={cn("inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition ring-1 sm:w-auto", cfg.secondaryBtn)}
+                >
                   <Linkedin className="h-4 w-4" /> LinkedIn
                 </a>
               </div>

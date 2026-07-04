@@ -1,5 +1,5 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "../utils/cn";
 import { ease } from "../data/content";
 import SplitSide from "./SplitSide";
@@ -9,6 +9,19 @@ import ritaDesigner from "../assets/rita.jpg";
 import ritaCoder from "../assets/code.png";
 
 export default function SplitCard({ mode, setMode, cfg }) {
+    const prefersReducedMotion = useReducedMotion();
+    const previousMode = useRef(mode);
+    const [isFlipping, setIsFlipping] = useState(false);
+
+    useEffect(() => {
+        if (previousMode.current === mode) return;
+        previousMode.current = mode;
+        if (prefersReducedMotion) return;
+        setIsFlipping(true);
+        const timeoutId = window.setTimeout(() => setIsFlipping(false), 720);
+        return () => window.clearTimeout(timeoutId);
+    }, [mode, prefersReducedMotion]);
+
     return (
         <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5">
             <div className={cn("absolute -inset-24 opacity-30 blur-3xl bg-gradient-to-r", cfg.accent)} />
@@ -41,8 +54,8 @@ export default function SplitCard({ mode, setMode, cfg }) {
                 </motion.div>
             </div>
 
-            <div className="relative flex items-center justify-center px-6 pb-6 pt-4">
-                <div className="relative h-52 w-full max-w-sm overflow-hidden rounded-2xl border border-white/10 bg-slate-900/40">
+            <div className="relative flex items-center justify-center px-4 pb-4 pt-4 sm:px-6 sm:pb-6">
+                <div className="hero-portrait-wrap relative h-44 w-full max-w-sm overflow-hidden rounded-2xl border border-white/10 bg-slate-900/40 sm:h-52">
                     <motion.div
                         className={cn("absolute inset-0 opacity-35 bg-gradient-to-r", cfg.accent)}
                         animate={{ opacity: [0.18, 0.35, 0.18] }}
@@ -53,10 +66,13 @@ export default function SplitCard({ mode, setMode, cfg }) {
                     <img
                         src={mode === "mern" ? ritaCoder : ritaDesigner}
                         alt={mode === "mern" ? "Code preview" : "Rita portrait"}
-                        className="absolute inset-0 h-full w-full object-cover object-center"
+                        className={cn(
+                            "absolute inset-0 h-full w-full object-cover object-center",
+                            isFlipping && "hero-portrait--flip"
+                        )}
                     />
 
-                    <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+                    <div className="absolute bottom-3 left-3 right-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                         <span className={cn("rounded-full px-3 py-1 text-xs ring-1", cfg.chip)}>
                             {mode === "uiux" ? "UI/UX view" : "MERN view"}
                         </span>
