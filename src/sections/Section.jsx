@@ -3,21 +3,21 @@ import { motion, useReducedMotion } from "framer-motion";
 
 export default function Section({ id, eyebrow, title, subtitle, children }) {
     const prefersReducedMotion = useReducedMotion();
-    const transition = prefersReducedMotion ? { duration: 0 } : { duration: 0.6, ease: [0.22, 1, 0.36, 1] };
+    const transition = prefersReducedMotion ? { duration: 0 } : { duration: 0.8, ease: [0.22, 1, 0.36, 1] };
     return (
         <motion.section
             id={id}
             className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-12 md:py-16 lg:px-4"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 40, scale: 0.97 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
             transition={transition}
             viewport={{ once: true, amount: 0.3 }}
         >
             <motion.div
                 className="mb-8"
-                initial={{ opacity: 0, y: 10 }}
+                initial={prefersReducedMotion ? false : { opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={transition}
+                transition={{ ...transition, delay: prefersReducedMotion ? 0 : 0.08 }}
                 viewport={{ once: true, amount: 0.6 }}
             >
                 <div className="text-xs font-semibold tracking-widest text-white/50">
@@ -29,9 +29,9 @@ export default function Section({ id, eyebrow, title, subtitle, children }) {
                 ) : null}
             </motion.div>
             <motion.div
-                initial={{ opacity: 0, y: 12 }}
+                initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={transition}
+                transition={{ ...transition, delay: prefersReducedMotion ? 0 : 0.14 }}
                 viewport={{ once: true, amount: 0.2 }}
             >
                 {children}

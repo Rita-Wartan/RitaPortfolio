@@ -205,6 +205,19 @@ canvas {
   opacity: 0.28;
 }
 
+.background-decor {
+  position: absolute;
+  opacity: 0.12;
+  filter: blur(0.3px);
+  transform-origin: center;
+  mix-blend-mode: screen;
+}
+
+.beige-theme .background-decor {
+  mix-blend-mode: multiply;
+  opacity: 0.14;
+}
+
 .code-rain {
   overflow: hidden;
   mix-blend-mode: screen;
@@ -662,6 +675,10 @@ canvas {
 @media (max-width: 480px) {
   .hero-portrait {
     width: min(88vw, 320px);
+  }
+
+  .background-decor {
+    opacity: 0.08;
   }
 
   .code-column {

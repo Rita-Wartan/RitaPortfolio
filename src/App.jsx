@@ -17,6 +17,13 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ProjectCard from "./components/ProjectCard";
 import mernFloat from "./assets/image1.png";
+import pcBackground from "./assets/pc.png";
+import pcBackgroundAlt from "./assets/image2.png";
+import paperBackground from "./assets/paper.png";
+import designerCreate from "./assets/create.png";
+import designerLight from "./assets/light.png";
+import designerPen from "./assets/pen.png";
+import designerDesign from "./assets/design.png";
 import Section from "./sections/Section";
 import HeroSplit from "./sections/HeroSplit";
 
@@ -40,6 +47,25 @@ export default function App() {
     () => PROJECTS.filter((p) => p.type === mode),
     [mode]
   );
+
+  const backgroundDecor = useMemo(() => {
+    const presets =
+      mode === "uiux"
+        ? [
+            { src: designerCreate, top: "12%", left: "4%", width: "min(18vw, 180px)", rotate: -12, delay: 0, duration: 14 },
+            { src: designerLight, top: "28%", right: "6%", width: "min(12vw, 128px)", rotate: 10, delay: 0.6, duration: 12 },
+            { src: designerPen, top: "58%", left: "8%", width: "min(11vw, 118px)", rotate: -18, delay: 0.3, duration: 15 },
+            { src: designerDesign, top: "74%", right: "12%", width: "min(16vw, 150px)", rotate: 14, delay: 0.9, duration: 13 },
+          ]
+        : [
+            { src: pcBackground, top: "10%", right: "4%", width: "min(18vw, 190px)", rotate: 12, delay: 0, duration: 14 },
+            { src: pcBackgroundAlt, top: "34%", left: "5%", width: "min(12vw, 126px)", rotate: -10, delay: 0.7, duration: 12 },
+            { src: paperBackground, top: "62%", right: "10%", width: "min(14vw, 146px)", rotate: -16, delay: 0.35, duration: 15 },
+            { src: mernFloat, top: "78%", left: "10%", width: "min(10vw, 110px)", rotate: 9, delay: 1, duration: 13 },
+          ];
+
+    return presets;
+  }, [mode]);
 
   useEffect(() => {
     const t = window.setTimeout(
@@ -116,6 +142,45 @@ export default function App() {
           className="pointer-events-none fixed inset-0 z-0 opacity-80"
           style={{ background: prefersReducedMotion ? "none" : spotlight }}
         />
+        <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+          {backgroundDecor.map((item, index) => (
+            <motion.img
+              key={`${mode}-decor-${index}`}
+              src={item.src}
+              alt=""
+              className="background-decor"
+              style={{
+                top: item.top,
+                left: item.left,
+                right: item.right,
+                width: item.width,
+                rotate: `${item.rotate}deg`,
+              }}
+              initial={{ opacity: 0, scale: 0.92 }}
+              animate={
+                prefersReducedMotion
+                  ? { opacity: 0.12, scale: 1 }
+                  : {
+                      opacity: [0.08, 0.16, 0.08],
+                      y: [0, -16, 0],
+                      x: [0, 8, 0],
+                      scale: [0.96, 1.03, 0.98],
+                      rotate: [`${item.rotate}deg`, `${item.rotate + 4}deg`, `${item.rotate}deg`],
+                    }
+              }
+              transition={
+                prefersReducedMotion
+                  ? { duration: 0.2 }
+                  : {
+                      duration: item.duration,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: item.delay,
+                    }
+              }
+            />
+          ))}
+        </div>
         <div
           className={cn(
             "pointer-events-none fixed inset-0 z-0 app-grid",
