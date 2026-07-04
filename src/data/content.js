@@ -14,7 +14,7 @@ export const MODES = {
         key: "mern",
         title: "MERN Stack Developer",
         subtitle:
-            "I build fast, scalable web apps with React, Node.js, and clean architecture—shipping features end-to-end.",
+            "I build fast, scalable web apps with React, Node.js, and clean architecture - shipping features end-to-end.",
         accent: "from-teal-500 via-cyan-500 to-sky-500",
         chip: "bg-teal-500/15 text-teal-950 ring-teal-600/30",
         primaryBtn: "bg-teal-500 text-teal-950 hover:bg-teal-400",
@@ -31,7 +31,7 @@ export const PROJECTS = [
         blurb:
             "Improved onboarding conversion by simplifying flows and microcopy; created scalable design system.",
         tags: ["Research", "Wireframes", "UI Kit", "Prototyping"],
-        links: { live: "/saferni.html#video", caseStudy: "/saferni.html" },
+        links: { live: "saferni.html#video", caseStudy: "saferni.html" },
     },
     {
         id: "uiux-2",
@@ -40,44 +40,41 @@ export const PROJECTS = [
         blurb:
             "The Application designed to help the Enterpreneurs and investors ",
         tags: ["IA", "Accessibility", "Design System"],
-        links: { live: "/stepup.html", caseStudy: "/stepup.html" },
+        links: { live: "stepup.html", caseStudy: "stepup.html" },
     },
     {
         id: "uiux-3",
         type: "uiux",
         title: "Munieh Application",
         blurb:
-            "The application was designed to support one of the Aga Khan Foundation’s programs by helping rural women showcase their handmade products .",
+            "The application was designed to support one of the Aga Khan Foundation's programs by helping rural women showcase their handmade products .",
         tags: ["Audit", "Heuristics", "Analytics"],
-        links: { live: "/munieh.html", caseStudy: "/munieh.html" },
+        links: { live: "munieh.html", caseStudy: "munieh.html" },
     },
 
     {
         id: "mern-1",
         type: "mern",
-        title: "SaaS Starter (Auth + Billing)",
+        title: "PurpleClinic",
         blurb:
-            "Production-ready MERN template with JWT auth, roles, Stripe billing, and CI pipeline.",
-        tags: ["React", "Node", "MongoDB", "Stripe"],
-        links: { live: "#", repo: "#" },
+            "Mobile healthcare app with React Native, Express.js backend, and supporting dashboards for platform management.",
+        tags: ["React Native", "Express.js", "Dashboards", "Mobile App"],
+        links: {
+            demo: "https://drive.google.com/file/d/1-_raaJhZu4UTb3teeUDN9-4Bh8KwbHhS/view?usp=sharing",
+            repo: "https://github.com/Rita-Wartan/PurpleClinic",
+        },
     },
     {
         id: "mern-2",
         type: "mern",
-        title: "Realtime Chat",
+        title: "Yalla-Safra",
         blurb:
-            "Socket.io chat with typing indicators, read receipts, and responsive UI.",
-        tags: ["Socket.io", "Express", "React"],
-        links: { live: "#", repo: "#" },
-    },
-    {
-        id: "mern-3",
-        type: "mern",
-        title: "Project Tracker",
-        blurb:
-            "Kanban + analytics; optimistic updates and robust API validation.",
-        tags: ["Redux", "Zod", "REST"],
-        links: { live: "#", repo: "#" },
+            "Bus booking platform with a React Native mobile app, Express.js backend, and dashboards for operational management.",
+        tags: ["React Native", "Express.js", "Dashboards", "Bus Booking"],
+        links: {
+            demo: "https://drive.google.com/file/d/1wwRIn__6bz75UxB4b8L6dj-gSfeh7cc0/view?usp=sharing",
+            repo: "https://github.com/Rita-Wartan/Yalla-Safra",
+        },
     },
 ];
 
@@ -94,6 +91,7 @@ export const SKILLS = {
     ],
     mern: [
         "React (Hooks)",
+        "React Native",
         "Node.js / Express",
         "MongoDB / Mongoose",
         "REST APIs",

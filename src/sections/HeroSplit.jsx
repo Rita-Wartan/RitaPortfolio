@@ -13,6 +13,7 @@ import designerDesign from "../assets/design.png";
 
 export default function HeroSplit({ mode, setMode, cfg, onPrimary }) {
     const isUiux = mode === "uiux";
+    const cvHref = `${import.meta.env.BASE_URL}Rita_Wartan_CV_editable1.pdf`;
     return (
         <section className="relative mx-auto max-w-6xl px-4 pt-0">
             {mode === "mern" && (
@@ -182,8 +183,8 @@ export default function HeroSplit({ mode, setMode, cfg, onPrimary }) {
               
 
                 <a
-                    href="/R.pdf"
-                    download
+                    href={cvHref}
+                    download="Rita_Wartan_CV_editable1.pdf"
                     className={cn(
                         "inline-flex items-center gap-2 rounded-xl px-5 py-3 font-semibold transition ring-1",
                         cfg.secondaryBtn

@@ -88,6 +88,17 @@ export default function ProjectCard({ p, cfg, mode }) {
                             Repo <Github className="h-4 w-4" />
                         </a>
                     )}
+                    {p.links.demo && (
+                        <a
+                            href={p.links.demo}
+                            className={cn(
+                                "project-card__btn inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium ring-1 ring-white/10",
+                                cfg.primaryBtn
+                            )}
+                        >
+                            Demo <ExternalLink className="h-4 w-4" />
+                        </a>
+                    )}
                     {p.links.live && (
                         <a
                             href={p.links.live}

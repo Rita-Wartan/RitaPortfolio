@@ -8,20 +8,15 @@ import {
   useReducedMotion,
   useSpring,
 } from "framer-motion";
-import { Github, Linkedin, Mail, ExternalLink } from "lucide-react";
-
+import { Github, Linkedin, Mail } from "lucide-react";
 import { MODES, PROJECTS, SKILLS, ease } from "./data/content";
 import { cn } from "./utils/cn";
 import { useLockBodyScroll } from "./hooks/useLockBodyScroll";
-
 import IntroOverlay from "./components/IntroOverlay";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ProjectCard from "./components/ProjectCard";
 import mernFloat from "./assets/image1.png";
-import bookCoverOne from "./assets/book1.jpg";
-import bookCoverTwo from "./assets/book2.jpg";
-
 import Section from "./sections/Section";
 import HeroSplit from "./sections/HeroSplit";
 
@@ -29,7 +24,6 @@ export default function App() {
   const prefersReducedMotion = useReducedMotion();
   const [mode, setMode] = useState("uiux");
   const cfg = MODES[mode];
-
   const [introDone, setIntroDone] = useState(false);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [sparkles, setSparkles] = useState([]);
@@ -184,15 +178,15 @@ export default function App() {
             <div className={cn("grid gap-8 md:grid-cols-12", mode === "mern" && "text-white")}>
               <div className="md:col-span-7">
                 <p className={cn("text-white/80 leading-relaxed", mode === "mern" && "text-white")}>
-                  I’m a UI/UX designer and MERN developer who bridges design and engineering.
-                  I care about clarity, consistency, and speed—whether I’m mapping user flows,
-                  crafting a design system, or shipping a performant React app.
+                  I'm a UI/UX designer and MERN developer who bridges design and engineering.
+                  I care about clarity, consistency, and speed - whether I'm mapping user flows,
+                  crafting a design system, or shipping a performant React and React Native app.
                 </p>
 
                 <div className="mt-6 flex flex-wrap gap-2">
                   {(mode === "uiux"
                     ? ["Figma", "Prototyping", "Design Systems", "UX Research"]
-                    : ["React", "Node.js", "MongoDB", "APIs"]
+                    : ["React", "React Native", "Node.js", "MongoDB", "APIs"]
                   ).map((t) => (
                     <span
                       key={t}
@@ -292,57 +286,16 @@ export default function App() {
             </div>
           </Section>
 
-          {mode === "uiux" && (
-            <Section id="books" eyebrow="Reading" title="Books Read" subtitle="Two favorites that shaped my design lens">
-              <div className="books-panel">
-              <div className="books-panel__header">
-                <div>
-                  <div className="books-panel__eyebrow">Curated picks</div>
-                  <h3 className="books-panel__title">Design library</h3>
-                  <p className="books-panel__subtitle">
-                    Focused reads for product thinking, systems, and user-centered craft.
-                  </p>
-                </div>
-              </div>
-
-              <div className="books-panel__grid">
-                <article className="books-panel__card">
-                  <img src={bookCoverOne} alt="Book cover one" className="books-panel__cover" />
-                  <div className="books-panel__info">
-                    <div className="books-panel__tag">Currently reading</div>
-                    <div className="books-panel__name">
-                      Ultimate UI/UX Design for Professionals: Create Impactful, User-Centric Designs with Research and
-                      Collaboration Techniques for Seamless Responsive Web Interfaces
-                    </div>
-                    <div className="books-panel__author">English edition — Sharanpreet Kaur</div>
-                  </div>
-                </article>
-                <article className="books-panel__card books-panel__card--alt">
-                  <img src={bookCoverTwo} alt="Book cover two" className="books-panel__cover" />
-                  <div className="books-panel__info">
-                    <div className="books-panel__tag">Finished</div>
-                    <div className="books-panel__name">
-                      Evolution of UX Thinking: Designing Intelligence From Interfaces to Intent, Automation, and Human
-                      Agency
-                    </div>
-                    <div className="books-panel__author">M.A. Nemane</div>
-                  </div>
-                </article>
-              </div>
-              </div>
-            </Section>
-          )}
-
           <Section
             id="contact"
             eyebrow="Contact"
-            title="Let’s build something clean"
+            title="Let's build something clean"
             subtitle="Available for freelance, contract, or full-time roles"
           >
             <div className="flex flex-col gap-4 rounded-2xl border border-white/10 bg-white/5 p-6 md:flex-row md:items-center md:justify-between">
               <div>
                 <div className="text-white/80">
-                  Email me or connect—happy to share case studies, code samples, and process.
+                  Email me or connect - happy to share case studies, code samples, and process.
                 </div>
                 <div className="mt-2 text-sm text-white/60">
                   ritaa.wartann@gmail.com
@@ -351,7 +304,7 @@ export default function App() {
 
               <div className="flex flex-wrap gap-2">
                 <a
-                  href="mailto:ritaa.wartann@gmail.com"
+                  href="#"
                   className={cn(
                     "inline-flex items-center gap-2 rounded-xl px-4 py-2 font-medium transition ring-1 ring-white/10",
                     cfg.primaryBtn
@@ -362,10 +315,7 @@ export default function App() {
                 <a href="https://github.com/Rita-Wartan" className={cn("inline-flex items-center gap-2 rounded-xl px-4 py-2 font-medium transition ring-1", cfg.secondaryBtn)}>
                   <Github className="h-4 w-4" /> GitHub
                 </a>
-                <a
-                  href="https://www.linkedin.com/in/rita-wartan-b70a1b319/"
-                  className={cn("inline-flex items-center gap-2 rounded-xl px-4 py-2 font-medium transition ring-1", cfg.secondaryBtn)}
-                >
+                <a href="#" className={cn("inline-flex items-center gap-2 rounded-xl px-4 py-2 font-medium transition ring-1", cfg.secondaryBtn)}>
                   <Linkedin className="h-4 w-4" /> LinkedIn
                 </a>
               </div>

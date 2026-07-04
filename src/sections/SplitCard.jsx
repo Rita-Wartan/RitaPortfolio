@@ -6,7 +6,7 @@ import SplitSide from "./SplitSide";
 
 // Add your images in: src/assets/
 import ritaDesigner from "../assets/rita.jpg";
-import ritaCoder from "../assets/ritacoder.png";
+import ritaCoder from "../assets/code.png";
 
 export default function SplitCard({ mode, setMode, cfg }) {
     return (
@@ -49,10 +49,10 @@ export default function SplitCard({ mode, setMode, cfg }) {
                         transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
                     />
 
-                    {/* ✅ Your Image */}
+                    {/*  Your Image */}
                     <img
                         src={mode === "mern" ? ritaCoder : ritaDesigner}
-                        alt={mode === "mern" ? "Rita coding portrait" : "Rita portrait"}
+                        alt={mode === "mern" ? "Code preview" : "Rita portrait"}
                         className="absolute inset-0 h-full w-full object-cover object-center"
                     />
 

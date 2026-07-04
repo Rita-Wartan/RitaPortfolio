@@ -37,7 +37,7 @@ export default function IntroOverlay({ done, onSkip, accent }) {
                                 </span>
                             </motion.div>
 
-                            <div className="mt-4 text-sm text-white/60">Loading experience…</div>
+                            <div className="mt-4 text-sm text-white/60">Loading experience...</div>
 
                             <button
                                 onClick={onSkip}
