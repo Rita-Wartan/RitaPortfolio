@@ -76,6 +76,18 @@ export const PROJECTS = [
             repo: "https://github.com/Rita-Wartan/Yalla-Safra",
         },
     },
+    {
+        id: "mern-3",
+        type: "mern",
+        title: "XO Website",
+        blurb:
+            "Frontend React project for an interactive XO website, built as a polished web experience and deployed live on Vercel.",
+        tags: ["React", "Vite", "Frontend", "Vercel"],
+        links: {
+            live: "https://xo-website-sepia.vercel.app",
+            repo: "https://github.com/Rita-Wartan/XO-Website",
+        },
+    },
 ];
 
 export const SKILLS = {
